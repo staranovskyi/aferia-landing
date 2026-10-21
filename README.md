@@ -16,34 +16,14 @@ assets/apple-touch-icon.png      180×180
 404.html, CNAME, robots.txt, sitemap.xml
 ```
 
-## Плейсхолдери
+## Контакти
 
-E-mail і WhatsApp уже підставлені (`stanislav@aferia.pt`, `351967043639`). Решта плейсхолдерів — літеральні `{{...}}` у HTML, без JS-підстановки (щоб `mailto:`/`wa.me` працювали без скриптів і щоб текст був у вихідному коді для SEO).
-
-| Плейсхолдер | Де | Значення |
-|---|---|---|
-| `{{NOME}}` | privacidade | ім'я відповідального за обробку даних |
-
-Замінити все за раз (PowerShell, з папки `landing`):
-
-```powershell
-Get-ChildItem -Recurse -Include *.html | ForEach-Object {
-  (Get-Content $_.FullName -Raw) `
-    -replace '\{\{NOME\}\}', 'Nome Apelido' |
-  Set-Content $_.FullName -NoNewline -Encoding utf8
-}
-```
-
-Перевірити, що нічого не лишилось:
-
-```powershell
-Get-ChildItem -Recurse -Include *.html | Select-String '\{\{'
-```
+Контакти підставлені прямо в HTML (без JS): `stanislav@aferia.pt` і WhatsApp `351967043639`. Змінити — пошуком по всіх `*.html`.
 
 ## Нова сторінка тендеру
 
 1. Скопіювати `concursos/casal-de-cotao/` → `concursos/<slug>/`.
-2. Оновити `<title>`, `og:url`, H1, блок `<dl class="meta">`, плашку «Prazo para erros e omissões», рядки таблиці, `subject=` у `mailto:` і текст у `wa.me`.
+2. Оновити `<title>`, `og:url`, H1, блок `<dl class="meta">`, плашку «Prazo para erros e omissões» (поки строк відкритий — дата; після — «terminou a DD/MM/AAAA»), рядки таблиці, CTA (для відкритого строку — «Pedir o relatório completo» з `subject=Relatório <ref>`), `subject=` у `mailto:` і текст у `wa.me`.
 3. `noindex` лишити, доки сторінки тендерів тестові. `robots.txt` уже закриває `/concursos/`.
 
 ## Деплой
