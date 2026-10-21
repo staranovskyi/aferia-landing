@@ -23,15 +23,13 @@ E-mail і WhatsApp уже підставлені (`stanislav@aferia.pt`, `351967
 | Плейсхолдер | Де | Значення |
 |---|---|---|
 | `{{NOME}}` | privacidade | ім'я відповідального за обробку даних |
-| `{{PRAZO_EO}}` | concursos/casal-de-cotao | дата з Programa do Concurso |
 
 Замінити все за раз (PowerShell, з папки `landing`):
 
 ```powershell
 Get-ChildItem -Recurse -Include *.html | ForEach-Object {
   (Get-Content $_.FullName -Raw) `
-    -replace '\{\{NOME\}\}', 'Nome Apelido' `
-    -replace '\{\{PRAZO_EO\}\}', 'DD/MM/2026' |
+    -replace '\{\{NOME\}\}', 'Nome Apelido' |
   Set-Content $_.FullName -NoNewline -Encoding utf8
 }
 ```
@@ -45,7 +43,7 @@ Get-ChildItem -Recurse -Include *.html | Select-String '\{\{'
 ## Нова сторінка тендеру
 
 1. Скопіювати `concursos/casal-de-cotao/` → `concursos/<slug>/`.
-2. Оновити `<title>`, `og:url`, H1, блок `<dl class="meta">`, `{{PRAZO_EO}}`, рядки таблиці, `subject=` у `mailto:` і текст у `wa.me`.
+2. Оновити `<title>`, `og:url`, H1, блок `<dl class="meta">`, плашку «Prazo para erros e omissões», рядки таблиці, `subject=` у `mailto:` і текст у `wa.me`.
 3. `noindex` лишити, доки сторінки тендерів тестові. `robots.txt` уже закриває `/concursos/`.
 
 ## Деплой
