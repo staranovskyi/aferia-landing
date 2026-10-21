@@ -18,14 +18,11 @@ assets/apple-touch-icon.png      180×180
 
 ## Плейсхолдери
 
-Усі плейсхолдери — літеральні `{{...}}` у HTML, без JS-підстановки (щоб `mailto:`/`wa.me` працювали без скриптів і щоб текст був у вихідному коді для SEO).
+E-mail і WhatsApp уже підставлені (`stanislav@aferia.pt`, `351967043639`). Решта плейсхолдерів — літеральні `{{...}}` у HTML, без JS-підстановки (щоб `mailto:`/`wa.me` працювали без скриптів і щоб текст був у вихідному коді для SEO).
 
 | Плейсхолдер | Де | Значення |
 |---|---|---|
-| `{{EMAIL}}` | усі сторінки | `stanislav@aferia.pt` |
-| `{{WHATSAPP}}` | index, concursos | номер у форматі `351XXXXXXXXX` (без `+`) |
 | `{{NOME}}` | privacidade | ім'я відповідального за обробку даних |
-| `{{EXPERIENCIA}}` | index → «Quem somos» | 1–2 речення з реальними фактами (або видалити `<p>`) |
 | `{{PRAZO_EO}}` | concursos/casal-de-cotao | дата з Programa do Concurso |
 
 Замінити все за раз (PowerShell, з папки `landing`):
@@ -33,10 +30,7 @@ assets/apple-touch-icon.png      180×180
 ```powershell
 Get-ChildItem -Recurse -Include *.html | ForEach-Object {
   (Get-Content $_.FullName -Raw) `
-    -replace '\{\{EMAIL\}\}', 'stanislav@aferia.pt' `
-    -replace '\{\{WHATSAPP\}\}', '351XXXXXXXXX' `
     -replace '\{\{NOME\}\}', 'Nome Apelido' `
-    -replace '\{\{EXPERIENCIA\}\}', 'Texto real.' `
     -replace '\{\{PRAZO_EO\}\}', 'DD/MM/2026' |
   Set-Content $_.FullName -NoNewline -Encoding utf8
 }
