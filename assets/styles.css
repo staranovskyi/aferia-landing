@@ -230,13 +230,14 @@ h3 {
 
 .nav {
   display: none;
-  gap: 26px;
+  gap: 18px;
 }
 .nav a {
   color: var(--ink);
   text-decoration: none;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 500;
+  white-space: nowrap;
 }
 .nav a:hover {
   color: var(--ink-2);
@@ -276,7 +277,8 @@ h3 {
   display: block;
 }
 
-@media (min-width: 900px) {
+/* Desktop nav from 1140px: the six labels need ~720px beside the logo and CTA */
+@media (min-width: 1140px) {
   .nav {
     display: flex;
   }
@@ -313,7 +315,7 @@ h3 {
   width: 100%;
   margin-top: 16px;
 }
-@media (min-width: 900px) {
+@media (min-width: 1140px) {
   .mobile-menu {
     display: none !important;
   }

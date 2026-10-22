@@ -8,6 +8,7 @@
   if (toggle && menu) {
     var setOpen = function (open) {
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
       menu.classList.toggle("is-open", open);
       menu.hidden = !open;
     };
